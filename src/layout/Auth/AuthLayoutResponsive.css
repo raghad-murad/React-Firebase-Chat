@@ -1,0 +1,59 @@
+/* * Responsive design using Media Query - For all the project */
+
+/* * Auth Responsive Design */
+
+/* 
+* The default design is for the portrait tablets and mobiles ->
+@media only screen and (max-width: 600px) {...}
+*/
+
+/* * Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    .auth-layout {
+        justify-content: flex-start;
+    }
+
+    .auth-image {
+        width: 45%;
+        height: 100%;
+        right: 0%;
+        background-image: url("../../assets/images/side-image.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50px 0 0 50px;
+        display: flex;
+    }
+
+    .auth-container {
+        width: 55%;
+    }
+}
+
+/* Medium devices (landscape tablets and small laptops, 768px and up) */
+@media only screen and (min-width: 769px) {
+
+    .auth-image {
+        width: 50%;
+    }
+
+    .auth-container {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+/* Extra large screens - center the layout on screens wider than 2000px */
+@media only screen and (min-width: 2000px) {
+  
+  .auth-layout {
+    max-width: 2000px;
+    margin: auto;
+  }
+    
+}

@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "axios": "^1.11.0",
+    "firebase": "^12.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-pro-sidebar": "^1.1.0",
     "react-router": "^7.8.1",
     "react-router-dom": "^7.8.1",
+    "react-toastify": "^11.0.5",
     "vite-plugin-svgr": "^4.3.0"
   },
   "devDependencies": {
