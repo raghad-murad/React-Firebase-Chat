@@ -1,0 +1,129 @@
+.conversation-list-panel {
+    flex: none;
+    width: 340px;
+    height: 100%;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.conversation-list-header {
+    flex: none;
+    padding: 24px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.conversation-list-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+}
+
+.conversation-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+}
+
+.conversation-search-icon {
+    flex: none;
+    color: var(--text-muted);
+}
+
+.conversation-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.conversation-search input:focus {
+    outline: none;
+}
+
+.conversation-search input::placeholder {
+    color: var(--text-muted);
+}
+
+.conversation-sort {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    padding: 2px 0;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.conversation-sort-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--link-blue);
+    font-weight: 600;
+}
+
+.conversation-sort:hover .conversation-sort-value {
+    text-decoration: underline;
+}
+
+.conversation-list-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    /* Right padding is wider than the left on purpose — breathing room for
+       the thin themed scrollbar (see AppShell.css), same reasoning as
+       ActiveConversationPanel.css's .active-conversation-thread. */
+    padding: 8px 16px 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.conversation-list-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.conversation-list-empty p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Mobile: full-width single screen (see ChatPage for the view state that
+   drives .conversation-list-panel-hidden-mobile). */
+@media (max-width: 768px) {
+    .conversation-list-panel {
+        width: 100%;
+        flex: 1;
+        border-right: none;
+    }
+
+    .conversation-list-panel-hidden-mobile {
+        display: none;
+    }
+}

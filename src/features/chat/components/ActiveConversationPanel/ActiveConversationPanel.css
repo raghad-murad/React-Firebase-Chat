@@ -1,0 +1,303 @@
+.active-conversation-panel {
+    position: relative; /* anchors .jump-to-latest-button */
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--page-bg);
+}
+
+.active-conversation-empty {
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.active-conversation-header {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.active-conversation-identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Hidden on desktop — there's nowhere to "go back" to when both panels are
+   already visible side by side. Shown in the mobile media query below. */
+.active-conversation-back-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin-left: -6px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.active-conversation-back-button:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.active-conversation-name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.94rem;
+    color: var(--text);
+}
+
+.active-conversation-status {
+    margin: 2px 0 0;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.active-conversation-status.is-online {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.active-conversation-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.video-action-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.active-conversation-action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.active-conversation-action-button:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* Video call reads as an always-available green action; info stays a
+   neutral, muted icon until hovered. */
+.active-conversation-action-video {
+    color: var(--accent);
+}
+
+.conversation-menu-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Covers the viewport so a click anywhere outside the menu closes it —
+   sits below the menu itself but above everything else (z-index 1 vs. the
+   menu's 2). */
+.conversation-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+}
+
+.conversation-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 190px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    padding: 6px;
+    z-index: 2;
+}
+
+.conversation-menu-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.conversation-menu-item:hover {
+    background: var(--page-bg);
+}
+
+.conversation-menu-item-danger {
+    color: #c0392b;
+}
+
+.conversation-menu-item-danger:hover {
+    background: #fdecea;
+}
+
+.coming-soon-note {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    white-space: nowrap;
+    background: var(--text);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    z-index: 1;
+}
+
+.active-conversation-thread {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    /* Right padding is wider than the other three sides on purpose — extra
+       breathing room so the thin themed scrollbar (see AppShell.css) never
+       sits flush against the right-aligned outgoing bubbles or their
+       ✓✓/timestamp meta row. */
+    padding: 20px 32px 20px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The actual message stack, wrapped separately from .active-conversation-thread
+   itself so a ResizeObserver (see the .jsx) can watch ITS height specifically
+   — the scroll container's own box never resizes (that's the whole point of
+   overflow-y: auto), only its content does, e.g. once an <img> attachment
+   finishes decoding and the thread needs to re-pin to the new bottom. */
+.thread-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Packs a short thread flush against the bottom instead of the top, WITHOUT
+   `justify-content: flex-end` — that property on a scrollable flex column
+   is a genuine Chromium bug: when the content overflows, the container's
+   `scrollHeight` never grows past `clientHeight` (verified directly: a
+   flex-end column with clearly-overflowing children reports
+   scrollHeight === clientHeight, so overflow-y: auto has nothing to
+   trigger on — the container becomes permanently unscrollable no matter
+   how much history there is). This ::before + margin-top: auto spacer is
+   the standard workaround: it's an ordinary flex item that consumes all
+   leftover space above it when the real content doesn't fill the
+   container, pushing everything below it (the actual messages) down to
+   the bottom — but because justify-content stays at its default
+   (flex-start), overflow is computed correctly and the container scrolls
+   normally once there's more content than room. */
+.active-conversation-thread::before {
+    content: "";
+    margin-top: auto;
+}
+
+.message-day-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.date-divider {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.date-divider span {
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-soft);
+}
+
+.active-conversation-thread-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.active-conversation-thread-empty p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Floats just above the composer, anchored to .active-conversation-panel's
+   position: relative — shown only while the reader has scrolled up and a
+   new message has arrived without auto-scrolling them down (see
+   showJumpToLatest in the .jsx). */
+.jump-to-latest-button {
+    position: absolute;
+    left: 50%;
+    bottom: 90px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent-dark);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.jump-to-latest-button:hover {
+    background: #26502f;
+}
+
+/* Mobile: one full-width screen at a time (see ChatPage for the view state
+   that drives .active-conversation-panel-hidden-mobile), with a back
+   button in the header to return to the conversation list. */
+@media (max-width: 768px) {
+    .active-conversation-panel {
+        width: 100%;
+    }
+
+    .active-conversation-panel-hidden-mobile {
+        display: none;
+    }
+
+    .active-conversation-back-button {
+        display: flex;
+    }
+}

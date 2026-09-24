@@ -1,0 +1,323 @@
+/* Reset default margins and paddings and set the outline none for all elements */
+#root {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: Poppins, serif;
+}
+
+/* Start the design with the mobile first */
+
+.auth-layout {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Hide the side image on the mobile */
+.auth-image {
+    display: none;
+}
+
+/* Page Content Styles */
+
+.auth-container {
+    width: 100%;
+    height: 100%;
+    padding-block: 38px 25px;
+    padding-inline: 20px;
+    position: relative;
+}
+
+.auth-content {
+    max-width: 404px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 17px;
+}
+
+/* * Auth Title Section */
+.auth-title {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.auth-title h1 {
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+}
+
+.auth-title p {
+    height: 40px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+    text-align: left;
+}
+
+/* Form Section */
+.signup-form,
+.signin-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding-block: 20px 33px;
+}
+
+.form-input {
+    width: 100%;
+    height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.form-input .password-input {
+    width: 100%;
+    height: 21px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.form-input label {
+    height: 21px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+}
+
+.form-input .password-input span {
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(12, 42, 146, 1);
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+.form-input input {
+    width: 100%;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    background-color: rgba(255, 255, 255, 1);
+    padding: 10px 10px 7px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgb(44, 43, 43);
+}
+
+input.invalid-input {
+    background-color: #ffdddd;
+    border: 1px solid rgba(212, 13, 13, 1);
+    color: rgba(212, 13, 13, 1);
+}
+
+input.valid-input {
+    background-color: #ddffe1;
+    border: 1px solid rgb(13, 212, 23);
+    color: rgb(13, 212, 23);
+}
+
+.error-message {
+    width: 100%;
+    height: 16px;
+    font-size: 0.5rem;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: 0.5px;
+    text-align: start;
+    vertical-align: middle;
+    padding-left: 4px;
+    color: rgba(212, 13, 13, 1);
+}
+
+.terms-input,
+.remember-user-input {
+    width: 100%;
+    height: 15.32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6px;
+    padding-block: 2.19px 3.28px;
+    accent-color: green;
+}
+
+.terms-input input,
+.remember-user-input input {
+    width: 11px;
+    height: 11.85px;
+}
+
+.terms-input label,
+.remember-user-input label {
+    height: 15.32px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+    padding-top: 1.5px;
+}
+
+.terms-input label span {
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.submit-button {
+    width: 100%;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(58, 91, 34, 1);
+    background-color: rgba(58, 91, 34, 1);
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(255, 255, 255, 1);
+    padding-block: 6px;
+    box-shadow: 3px 3px 5px rgba(58, 91, 34, 1);
+}
+
+/* Style the divider */
+.divider-container {
+    width: 100%;
+    height: 15.32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4.5px;
+    padding-inline: 3px 1px;
+    margin-bottom: 35.08px;
+}
+
+.divider-container hr {
+    width: 187.5px;
+}
+
+.divider-container span {
+    height: 14px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+    padding-top: 1.5px;
+}
+
+/* Social Auth buttons */
+.other-option-to-sign {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6%;
+}
+
+.sign-with-google,
+.sign-with-apple {
+    width: 47%;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.sign-with-google div,
+.sign-with-apple div {
+    width: 100%;
+    height: 24px;
+    left: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sign-with-google div img,
+.sign-with-apple div img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.sign-with-google div p,
+.sign-with-apple div p {
+    height: 18px;
+    font-size: 0.65rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+    margin: 0;
+    padding-top: 0.3rem;
+}
+
+/*Auth redirect*/
+.have-account,
+.have-no-account {
+    width: 100%;
+    height: 22.98px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+}
+
+.have-account p,
+.have-no-account p {
+    height: 21px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(0, 0, 0, 1);
+}
+
+.have-account a,
+.have-no-account a {
+    height: 21px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #646cff;
+}

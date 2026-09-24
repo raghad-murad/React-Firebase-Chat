@@ -1,0 +1,208 @@
+/* Import the font in the design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Reset default margins and paddings and set the outline none for all elements */
+#root {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: Poppins, serif;
+}
+
+.loader-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #383C3E;
+    letter-spacing: 0.5px;
+    padding-top: 1rem;
+    animation: fadeInOut 2s infinite;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    --color: hsl(0, 0%, 87%);
+    --animation: 2s ease-in-out infinite;
+}
+
+.loading-spinner .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: solid 2px var(--color);
+    border-radius: 50%;
+    margin: 0 10px;
+    background-color: transparent;
+    animation: circle-keys var(--animation);
+}
+
+.loading-spinner .circle .dot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color);
+    animation: dot-keys var(--animation);
+}
+
+.loading-spinner .circle .outline {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: outline-keys var(--animation);
+}
+
+.circle:nth-child(1) {
+    --color: #4285f4;
+    /* Blue */
+    border-color: var(--color);
+}
+
+.circle:nth-child(1) .dot {
+    background-color: var(--color);
+}
+
+.circle:nth-child(2) {
+    --color: #ea4335;
+    /* Red */
+    border-color: var(--color);
+    animation-delay: 0.3s;
+}
+
+.circle:nth-child(2) .dot {
+    background-color: var(--color);
+    animation-delay: 0.3s;
+}
+
+.circle:nth-child(3) {
+    --color: #fbbc05;
+    /* Yellow */
+    border-color: var(--color);
+    animation-delay: 0.6s;
+}
+
+.circle:nth-child(3) .dot {
+    background-color: var(--color);
+    animation-delay: 0.6s;
+}
+
+.circle:nth-child(4) {
+    --color: #34a853;
+    /* Green */
+    border-color: var(--color);
+    animation-delay: 0.9s;
+}
+
+.circle:nth-child(4) .dot {
+    background-color: var(--color);
+    animation-delay: 0.9s;
+}
+
+.circle:nth-child(5) {
+    --color: #4285f4;
+    /* Blue (repeat for continuity) */
+    border-color: var(--color);
+    animation-delay: 1.2s;
+}
+
+.circle:nth-child(5) .dot {
+    background-color: var(--color);
+    animation-delay: 1.2s;
+}
+
+.circle:nth-child(1) .outline {
+    animation-delay: 0.9s;
+}
+
+.circle:nth-child(2) .outline {
+    animation-delay: 1.2s;
+}
+
+.circle:nth-child(3) .outline {
+    animation-delay: 1.5s;
+}
+
+.circle:nth-child(4) .outline {
+    animation-delay: 1.8s;
+}
+
+.circle:nth-child(5) .outline {
+    animation-delay: 2.1s;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes circle-keys {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes dot-keys {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes outline-keys {
+    0% {
+        transform: scale(0);
+        outline: solid 20px var(--color);
+        outline-offset: 0;
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        outline: solid 0 transparent;
+        outline-offset: 20px;
+        opacity: 0;
+    }
+}

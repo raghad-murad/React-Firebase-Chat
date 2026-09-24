@@ -1,0 +1,111 @@
+.settings-subnav {
+    flex: none;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-subnav-item {
+    text-align: left;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 14px;
+    cursor: pointer;
+}
+
+.settings-subnav-item:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.settings-subnav-item-active {
+    background: var(--surface);
+    color: var(--accent-dark);
+    box-shadow: var(--shadow-soft);
+}
+
+.settings-subnav-item-danger {
+    color: #b3432f;
+}
+
+.settings-subnav-item-danger:hover {
+    background: #f6e3de;
+    color: #b3432f;
+}
+
+.settings-subnav-item-danger.settings-subnav-item-active {
+    background: #f6e3de;
+    color: #b3432f;
+}
+
+.settings-subnav-footer {
+    margin-top: 24px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.settings-subnav-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.settings-subnav-logout svg {
+    flex: none;
+    width: 17px;
+    height: 17px;
+}
+
+.settings-subnav-logout:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+/* Mobile: the sub-nav becomes a horizontal row above the content instead
+   of a side column (see .settings-layout in SettingsPage.css). */
+@media (max-width: 768px) {
+    .settings-subnav {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .settings-subnav-item {
+        flex: 1;
+        text-align: center;
+    }
+
+    .settings-subnav-footer {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        flex: none;
+    }
+
+    .settings-subnav-logout {
+        width: auto;
+        white-space: nowrap;
+    }
+
+    .settings-subnav-logout span {
+        display: none;
+    }
+}

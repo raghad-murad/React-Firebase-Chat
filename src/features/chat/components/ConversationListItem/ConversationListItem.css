@@ -1,0 +1,115 @@
+.conversation-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+}
+
+.conversation-item:hover {
+    background: var(--page-bg);
+}
+
+.conversation-item-active {
+    background: var(--accent-soft);
+}
+
+.conversation-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
+.conversation-item-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.conversation-item-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.conversation-item-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.conversation-item-time {
+    flex: none;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.conversation-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.conversation-item-preview {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.conversation-item-typing {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--accent);
+}
+
+.unread-badge {
+    flex: none;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-tick {
+    flex: none;
+}
+
+.status-tick-sent {
+    color: #b5bac2;
+}
+
+.status-tick-delivered {
+    color: #b5bac2;
+}
+
+.status-tick-seen {
+    color: var(--accent);
+}

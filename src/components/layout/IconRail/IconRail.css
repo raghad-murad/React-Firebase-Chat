@@ -1,0 +1,158 @@
+.icon-rail {
+    flex: none;
+    width: 76px;
+    height: 100%;
+    background: var(--page-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 22px 16px;
+    gap: 18px;
+}
+
+.icon-rail-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-rail-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.icon-rail-divider {
+    width: 32px;
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+}
+
+.icon-rail-nav,
+.icon-rail-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-rail-bottom {
+    margin-top: auto;
+}
+
+.rail-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.rail-icon:hover:not(:disabled) {
+    background: var(--accent-soft);
+}
+
+.rail-icon:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+/* The active nav item and the always-available Settings shortcut both read
+   as a solid filled circle with a white icon — everything else on the rail
+   stays a plain green glyph on transparent background. */
+.rail-icon-active,
+.rail-icon-settings {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.rail-icon-active:hover,
+.rail-icon-settings:hover {
+    background: var(--accent-dark);
+    color: #ffffff;
+}
+
+/* Log out reads as a neutral, muted action rather than a green nav item. */
+.rail-icon-logout {
+    color: var(--text-muted);
+}
+
+.rail-icon-logout:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+.rail-icon:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Mobile: the permanent vertical sidebar becomes a fixed bottom tab bar —
+   the same nav icons as the desktop rail, laid out horizontally across the
+   bottom of the screen, like a native app's tab bar. It sits on top of
+   (position: fixed), not squeezed into, the page — AppShell.css reserves
+   matching bottom padding on .app-shell-content so nothing renders behind it.
+
+   Two things don't carry over from the desktop rail into the bar itself:
+   - The logo + your own avatar (.icon-rail-top) are desktop-rail furniture,
+     not tab-bar content — dropped here.
+   - Logout doesn't fit a persistent tab bar the way it fits a side rail (no
+     app puts "log out" in a bottom tab), so it's moved into the Settings
+     page for mobile instead — see SettingsPage.jsx. The desktop rail keeps
+     it exactly as it was.
+   Discover/Chats/Calls/Music/Calendar/Settings all stay, same as desktop. */
+@media (max-width: 768px) {
+    .icon-rail {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: var(--bottom-bar-height);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 6px;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        border-right: none;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -4px 16px rgba(31, 35, 40, 0.08);
+        gap: 0;
+        z-index: 50;
+        background: var(--surface);
+    }
+
+    .icon-rail-top,
+    .icon-rail-divider {
+        display: none;
+    }
+
+    .icon-rail-nav,
+    .icon-rail-bottom {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .icon-rail-bottom {
+        margin-top: 0;
+    }
+
+    .rail-icon-logout {
+        display: none;
+    }
+
+    .rail-icon {
+        width: 42px;
+        height: 42px;
+    }
+}

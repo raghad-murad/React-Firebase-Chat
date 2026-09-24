@@ -1,0 +1,108 @@
+/*
+ * Design tokens for the whole post-login app (rail + chat + settings).
+ * Scoped to .app-shell rather than :root so they can't leak into the
+ * pre-login auth pages, which have their own separate palette.
+ */
+.app-shell {
+    --accent: #27ae60;
+    --accent-dark: #3a5b22;
+    --accent-soft: #e5f5eb;
+    --link-blue: #3b82f6;
+    --page-bg: #f4f6f5;
+    --surface: #ffffff;
+    --border: #e6e9ec;
+    --text: #1f2328;
+    --text-muted: #8a929c;
+    --shadow-soft: 0 4px 20px rgba(31, 35, 40, 0.06);
+    --bottom-bar-height: 60px;
+
+    /* Escape #root's padding/centering from the legacy Vite template —
+       the app shell always fills the full browser viewport. */
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: var(--page-bg);
+    font-family: Poppins, system-ui, sans-serif;
+    color: var(--text);
+    text-align: left;
+    overflow: hidden;
+}
+
+.app-shell-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Thin, themed scrollbar for the app's two scroll areas — the message
+   thread (ActiveConversationPanel.css's .active-conversation-thread) and
+   the conversation list (ConversationList.css's .conversation-list-scroll)
+   — kept here as one shared rule instead of duplicated in each feature's
+   own CSS file, since both need to look consistent with each other.
+   Firefox and WebKit/Chromium each need their own properties; there's no
+   single unprefixed standard that covers both yet. */
+.active-conversation-thread,
+.conversation-list-scroll {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--border) transparent; /* Firefox: thumb, track */
+}
+
+.active-conversation-thread::-webkit-scrollbar,
+.conversation-list-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.active-conversation-thread::-webkit-scrollbar-track,
+.conversation-list-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.active-conversation-thread::-webkit-scrollbar-thumb,
+.conversation-list-scroll::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 8px;
+    /* A transparent border + background-clip: padding-box shrinks the
+       visible fill inside the 8px track, so the thumb reads as a slim
+       rounded pill floating in the gutter instead of a solid block
+       filling the whole scrollbar width. */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.active-conversation-thread::-webkit-scrollbar-thumb:hover,
+.conversation-list-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Mobile: the rail moves to a fixed bottom tab bar (see IconRail.css)
+   instead of sitting beside the content, like a native app's tab bar. It's
+   position:fixed (out of normal flow), so .app-shell-content just needs a
+   bottom padding reservation equal to the bar's height — border-box above
+   makes that padding come OUT of the 100% height instead of adding to it,
+   which is what keeps every child's own height:100% honest here instead of
+   silently overflowing behind the bar. */
+@media (max-width: 768px) {
+    .app-shell-content {
+        width: 100%;
+        padding-bottom: var(--bottom-bar-height);
+    }
+
+    /* A page (chat, while a conversation is open) can ask to hide the bar
+       entirely on mobile — off by default, since the bar is meant to stay
+       reachable everywhere. */
+    .app-shell-rail-hidden-mobile .icon-rail {
+        display: none;
+    }
+
+    .app-shell-rail-hidden-mobile .app-shell-content {
+        padding-bottom: 0;
+    }
+}

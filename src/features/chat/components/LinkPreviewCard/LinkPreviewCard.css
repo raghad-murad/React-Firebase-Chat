@@ -1,0 +1,54 @@
+.link-preview-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    width: 260px;
+    max-width: 100%;
+}
+
+.link-preview-image {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    background: linear-gradient(135deg, var(--accent-soft), #cfe9d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.link-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.link-preview-image-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--accent-dark);
+}
+
+.link-preview-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px 12px;
+}
+
+.link-preview-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.link-preview-subtitle {
+    font-size: 0.72rem;
+    opacity: 0.75;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

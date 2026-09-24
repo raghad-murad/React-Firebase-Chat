@@ -1,0 +1,116 @@
+.verify-email-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6f5;
+    font-family: Poppins, system-ui, sans-serif;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.verify-email-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(31, 35, 40, 0.08);
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+}
+
+.verify-email-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f2328;
+}
+
+.verify-email-message {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #5b6472;
+}
+
+.verify-email-message strong {
+    color: #1f2328;
+}
+
+.verify-email-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: -6px 0 0;
+    font-size: 0.76rem;
+    color: #8a929c;
+}
+
+.verify-email-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #27ae60;
+    flex: none;
+    animation: verify-email-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes verify-email-pulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .verify-email-status-dot {
+        animation: none;
+    }
+}
+
+.verify-email-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.verify-email-btn {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 11px 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.verify-email-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.verify-email-btn-outline {
+    background: #ffffff;
+    color: #1f2328;
+    border: 1px solid #e6e9ec;
+}
+
+.verify-email-btn-outline:hover:not(:disabled) {
+    border-color: #27ae60;
+    color: #27ae60;
+}
+
+.verify-email-btn-solid {
+    background: #3a5b22;
+    color: #ffffff;
+    border: 1px solid #3a5b22;
+}
+
+.verify-email-btn-solid:hover:not(:disabled) {
+    background: #2f4a1c;
+}

@@ -1,0 +1,336 @@
+.message-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 70%;
+}
+
+.message-row-own {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    max-width: 65%;
+}
+
+.message-avatar {
+    flex: none;
+}
+
+.message-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.message-row-own .message-stack {
+    align-items: flex-end;
+}
+
+.message-bubble {
+    padding: 10px 14px;
+    border-radius: 16px;
+    background: var(--page-bg);
+    color: var(--text);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.message-row-own .message-bubble {
+    background: var(--accent-dark);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.message-row:not(.message-row-own) .message-bubble {
+    border-bottom-left-radius: 4px;
+}
+
+.message-bubble-link {
+    padding: 0;
+    overflow: hidden;
+    background: var(--page-bg);
+}
+
+.message-row-own .message-bubble-link {
+    background: var(--accent-dark);
+}
+
+.message-text a {
+    color: var(--link-blue);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.message-text a:hover {
+    text-decoration: underline;
+}
+
+.message-bubble-attachment {
+    padding: 0;
+    overflow: hidden;
+}
+
+.message-attachment-image-button {
+    display: block;
+    line-height: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.message-attachment-image {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    max-height: 260px;
+    object-fit: cover;
+}
+
+.message-attachment-file {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.message-attachment-file:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.message-attachment-file-icon {
+    flex: none;
+}
+
+.message-attachment-file-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.message-attachment-file-name {
+    max-width: 200px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.message-attachment-file-size {
+    font-size: 0.72rem;
+    opacity: 0.75;
+}
+
+.message-attachment-caption {
+    display: block;
+    padding: 8px 14px 10px;
+}
+
+.message-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-inline: 4px;
+}
+
+.message-time {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+}
+
+.bubble-tick {
+    flex: none;
+}
+
+.bubble-tick-sent,
+.bubble-tick-delivered {
+    color: #b5bac2;
+}
+
+.bubble-tick-seen {
+    color: var(--accent);
+}
+
+/* Deleted messages: same bubble shape/alignment, just italic/muted content
+   and no attachment/caption — deliberately reuses .message-bubble's own
+   own/received background rules rather than overriding them, so a deleted
+   message still reads as "mine" vs "theirs" at a glance. */
+.message-bubble-deleted {
+    opacity: 0.8;
+}
+
+.message-deleted-text {
+    font-style: italic;
+    opacity: 0.85;
+}
+
+/* A normal .message-row flex item (see the DOM-order comment in the .jsx)
+   — not absolutely positioned. .message-row's own `gap` already spaces it
+   away from .message-stack, and align-self:center here (overriding the
+   row's align-items:flex-end, which is meant for the avatar) centers it
+   next to the bubble regardless of the bubble's height, clear of both the
+   message text and the timestamp/tick below it. */
+.message-delete-button {
+    flex: none;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+}
+
+/* Revealed on hover for the row it belongs to (desktop) — see the mobile
+   override below, where it's always visible instead. */
+.message-row:hover .message-delete-button,
+.message-delete-button:focus-visible {
+    opacity: 1;
+}
+
+.message-delete-button:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .message-delete-button {
+        opacity: 1;
+    }
+}
+
+/* Attachment preview modal (image / PDF / generic file) — see
+   MessageBubble.jsx's AttachmentPreviewModal. */
+.attachment-preview-modal-image {
+    padding: 8px;
+    line-height: 0;
+}
+
+.attachment-preview-image {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+.attachment-preview-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px 8px;
+    text-align: center;
+}
+
+.attachment-preview-file-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--text-muted);
+}
+
+.attachment-preview-pdf {
+    width: min(70vw, 600px);
+    height: min(70vh, 700px);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.attachment-preview-file-name {
+    margin: 4px 0 0;
+    font-weight: 600;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.attachment-preview-file-size {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.attachment-preview-download-button {
+    margin-top: 8px;
+    padding: 9px 22px;
+    border-radius: 10px;
+    background: var(--accent-dark);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.attachment-preview-download-button:hover {
+    background: #26502f;
+}
+
+/* Delete-confirmation modal content */
+.delete-confirm-title {
+    margin: 4px 0 4px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.delete-confirm-body {
+    margin: 0 0 16px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.delete-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.delete-confirm-cancel,
+.delete-confirm-delete {
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-confirm-cancel {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.delete-confirm-cancel:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.delete-confirm-delete {
+    border: 1px solid #c0392b;
+    background: #c0392b;
+    color: #ffffff;
+}
+
+.delete-confirm-delete:hover:not(:disabled) {
+    background: #a5332a;
+}
+
+.delete-confirm-cancel:disabled,
+.delete-confirm-delete:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

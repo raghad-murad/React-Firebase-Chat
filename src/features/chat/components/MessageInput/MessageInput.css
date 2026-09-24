@@ -1,0 +1,144 @@
+.message-input-wrapper {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+}
+
+.message-input-row {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.message-pending-attachment {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px 0;
+    background: var(--surface);
+}
+
+.message-pending-thumb {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.message-pending-file-icon {
+    flex: none;
+    color: var(--text-muted);
+}
+
+.message-pending-filename {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    color: var(--text);
+}
+
+.message-pending-cancel {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: var(--page-bg);
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.message-pending-cancel:hover:not(:disabled) {
+    background: var(--border);
+    color: var(--text);
+}
+
+.message-pending-cancel:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.message-attach-button {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.message-attach-button:hover {
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+.message-attach-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.message-input-field {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: var(--page-bg);
+    border-radius: 999px;
+    padding: 11px 18px;
+    font: inherit;
+    font-size: 0.86rem;
+    color: var(--text);
+}
+
+.message-input-field:focus {
+    outline: 2px solid var(--accent-soft);
+}
+
+.message-input-field::placeholder {
+    color: var(--text-muted);
+}
+
+.message-input-field:disabled {
+    opacity: 0.7;
+}
+
+.message-send-button {
+    flex: none;
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 8px 4px;
+    cursor: pointer;
+}
+
+.message-send-button:hover {
+    color: var(--accent-dark);
+}
+
+.message-send-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

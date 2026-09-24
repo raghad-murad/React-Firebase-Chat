@@ -1,0 +1,101 @@
+/* Import the font in the design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* 
+   CSS Rules to Override Chrome's Default Autofill Styling for Input Fields
+   Chrome automatically applies a yellow background to autofilled input fields,
+   which can clash with the website's design. These rules force a custom background
+   and text color when the browser autofills the input (e.g., saved passwords, usernames).
+*/
+
+/* Target autofilled input fields in WebKit-based browsers (like Chrome and Safari) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    /* 
+       Use a large inset box shadow to "cover" the default yellow autofill background.
+       Here, we're using white (1000px is arbitrary but large enough to fill the input).
+       You can change 'white' to any color that matches your design (e.g., #f0f0f0).
+    */
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+
+    /* 
+       Force the text color to black (#000). Chrome sometimes changes the text color
+       in autofilled fields to improve contrast, but this ensures consistency.
+       Change #000 to your preferred text color.
+    */
+    -webkit-text-fill-color: #000 !important;
+
+    /* 
+       Apply a long-duration transition on background-color to prevent Chrome from
+       abruptly changing the background when the page loads or autofill is applied.
+       This "trick" makes the background appear stable by delaying any potential
+       color change over 5000 seconds (effectively disabling it).
+    */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 
+   Similar rules for buttons (less common, but some buttons might be autofilled
+   in specific cases, such as login forms with saved credentials).
+   We set the background to transparent to avoid unwanted styling.
+*/
+button:-webkit-autofill,
+button:-webkit-autofill:hover,
+button:-webkit-autofill:focus {
+    /* 
+       Apply a transparent inset shadow to remove any unwanted autofill background
+       on buttons. This ensures buttons remain visually consistent.
+    */
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+
+    /* 
+       Ensure the button text color remains consistent (black in this case).
+       Adjust as needed for your design.
+    */
+    -webkit-text-fill-color: #000 !important;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

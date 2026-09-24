@@ -1,0 +1,63 @@
+.delete-account-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-account-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid #f0cfc4;
+}
+
+.delete-account-title {
+    color: #b3432f;
+}
+
+.delete-account-warning {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.delete-account-confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 320px;
+}
+
+.delete-account-confirm span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.delete-account-confirm strong {
+    color: #b3432f;
+}
+
+.delete-account-confirm input {
+    border: 1px solid var(--border);
+    background: var(--page-bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.delete-account-confirm input:focus {
+    outline: 2px solid #f6e3de;
+    border-color: #b3432f;
+}
+
+.settings-btn-danger {
+    background: #b3432f;
+    color: #ffffff;
+    border: 1px solid #b3432f;
+}
+
+.settings-btn-danger:hover:not(:disabled) {
+    background: #963726;
+}
