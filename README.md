@@ -2,18 +2,16 @@
 
 WebChat is a real-time 1:1 messaging web app built with React and Firebase. It supports email/password authentication with email verification, live chat with delivery and read receipts, presence, typing indicators, and image/file attachments, with all media stored directly in Firestore instead of Firebase Storage.
 
-<!-- Live Demo: https://your-deployed-url-here (add after deploy) -->
-
 ## Screenshots
 
 Screenshots are not included in this repository yet. Once available, they will live in a `screenshots/` folder at the repo root, referenced here as below.
 
 | Page | File |
 |---|---|
-| Sign In | `screenshots/sign-in.png` |
-| Chat | `screenshots/chat.png` |
-| Discover | `screenshots/discover.png` |
-| Settings | `screenshots/settings.png` |
+| Sign In | ![Sign In](assets/screenshots/sign-in.png) |
+| Chat | ![Chat](assets/screenshots/chat.png) |
+| Discover | ![Discover](assets/screenshots/discover.png) |
+| Settings | ![Settings](assets/screenshots/settings.png) |
 
 ## Features
 
@@ -59,7 +57,6 @@ Screenshots are not included in this repository yet. Once available, they will l
 | vite | 7.1.2 | Dev server and build tool |
 | firebase | 12.1.0 | Firebase JS SDK (Authentication and Firestore only) |
 | react-router-dom | 7.8.1 | Client-side routing |
-| tailwindcss | 3.4.17 | Configured via PostCSS; present in the project but not currently used for styling (all components use hand-written CSS) |
 | eslint | 9.33.0 | Linting (`npm run lint`) |
 | vitest | 5.0.1 | Unit and component test runner |
 | @testing-library/react | 16.3.0 | Component testing utilities |
@@ -77,21 +74,9 @@ There is no Firebase Storage in this project. Profile avatars and message attach
 
 The app is a single-page React application with no custom backend server: it talks to Firebase Authentication and Cloud Firestore directly from the browser, with access control enforced entirely by Firestore Security Rules. Components are organized by feature (auth, chat, settings, discover) plus a small set of shared UI components. All Firebase access is isolated to a service layer: feature components never import the Firebase SDK directly, they call functions exported by a service module instead. Global authentication and profile state is provided by a single `AuthContext`, populated once by an `AuthProvider` at the top of the app and read anywhere via a `useAuth` hook; there is no external state management library.
 
-```
-  Pages (SignInPage, ChatPage, SettingsPage, DiscoverPage, ...)
-        |
-  Feature components (SignInForm, ActiveConversationPanel, MessageBubble, ...)
-        |
-  Shared UI components (Avatar, Button, Modal, InputField, Toast, ...)
-        |
-  Context / hooks / route guards (AuthContext, useAuth, usePresence, ProtectedRoute, PublicRoute)
-        |
-  Service layer (authService, userService, chatService, messageService)
-        |
-  Firebase init (src/firebase/firebase.js)
-        |
-  Firebase backend (Authentication, Cloud Firestore)
-```
+## Architecture
+
+![WebChat architecture diagram](assets/architecture.png)
 
 Real-time updates flow the other direction: the service layer subscribes to Firestore with `onSnapshot`, and the resulting data flows back up into component state, so the UI updates automatically whenever the underlying data changes, without any manual refresh or polling.
 
@@ -185,23 +170,7 @@ The rules and end-to-end layers require a Java runtime, since the Firestore emul
 
 ## Project Structure
 
-```
-src/
-  firebase/          Firebase app initialization (Auth + Firestore, no Storage)
-  context/            AuthContext and AuthProvider (global auth/profile state)
-  hooks/               useAuth, usePresence, useToast
-  routes/              route path constants and ProtectedRoute / PublicRoute guards
-  components/
-    ui/                shared presentational components (Avatar, Button, Modal, InputField, Toast, icons, ...)
-    layout/             AppShell and the icon navigation rail
-  pages/               top-level pages not tied to a single feature (Not Found, Lockout)
-  utils/               shared form validation
-  features/
-    auth/               sign in / sign up forms, email verification, authService
-    settings/            profile ("About Me") editing, avatar processing, account deletion
-    discover/             user search page and recent-search history
-    chat/                 conversation list, message thread, composer, and the chat/message/user service modules
-```
+![WebChat source structure](assets/project-structure.png)
 
 ## Notable Engineering Decisions
 
